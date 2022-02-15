@@ -5,9 +5,16 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     #region Declaration
-    public float regularSpeed = 5;
     public Rigidbody2D rb;
-    Vector2 dir;
+    public Camera cam;
+
+
+    //Move
+    public float regularSpeed = 5;
+    Vector2 moveDir;
+
+    //Rotate
+    Vector2 mousePos;
     #endregion Declaration
 
 
@@ -19,13 +26,23 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + dir * regularSpeed * Time.fixedDeltaTime);
+        //position
+        rb.MovePosition(rb.position + moveDir * regularSpeed * Time.fixedDeltaTime);
+
+        //rotation
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = angle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        dir.x = Input.GetAxisRaw("Horizontal");
-        dir.y = Input.GetAxisRaw("Vertical");
+        //move input
+        moveDir.x = Input.GetAxisRaw("Horizontal");
+        moveDir.y = Input.GetAxisRaw("Vertical");
+
+        //look input
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 }
