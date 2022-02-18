@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     #region Declaration
+    //Components
     public Rigidbody2D rb;
     public Camera cam;
-
+    PlayerStats playerStats;
 
     //Move
-    public float regularSpeed = 5;
+    public float startSpeed = 5;
     Vector2 moveDir;
 
     //Rotate
@@ -18,16 +19,18 @@ public class PlayerMove : MonoBehaviour
     #endregion Declaration
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        playerStats = gameObject.GetComponent<PlayerStats>();
     }
 
     private void FixedUpdate()
     {
         //position
-        rb.MovePosition(rb.position + moveDir * regularSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDir * playerStats.PLAYERSPEED * Time.fixedDeltaTime);
 
         //rotation
         Vector2 lookDir = mousePos - rb.position;
@@ -38,11 +41,15 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region Camera
         //move input
         moveDir.x = Input.GetAxisRaw("Horizontal");
         moveDir.y = Input.GetAxisRaw("Vertical");
 
         //look input
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        #endregion Camera
+
     }
 }

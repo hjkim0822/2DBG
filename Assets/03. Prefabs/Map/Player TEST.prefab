@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7319099949311171436}
   - component: {fileID: 7319099949311171439}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player TEST
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   cam: {fileID: 0}
-  startSpeed: 5
+  regularSpeed: 5
 --- !u!114 &7319099949311171439
 MonoBehaviour:
   m_ObjectHideFlags: 0
