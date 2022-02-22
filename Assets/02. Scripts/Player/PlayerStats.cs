@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerStats : MonoBehaviour
 
     //size variables;
     Vector3 playerSize;
-    public Vector3 startPlayerSize = new Vector3 (1.0f, 1.0f, 1.0f);
+    public Vector3 startPlayerSize = new Vector3(1.0f, 1.0f, 1.0f);
     #endregion Declaration
 
     #region Player HP Property
@@ -46,17 +47,33 @@ public class PlayerStats : MonoBehaviour
         get { return playerSize; }
         set
         {
-            transform.localScale = value;
             //transform.localScale = playerSize;
+           // transform.localScale = value;
         }
     }
     #endregion Player Size Property
-    
 
     void Start()
     {
         PLAYERHP = maxHP;
         PLAYERSPEED = startPlayerSpeed;
-        PLAYERSIZE = startPlayerSize;
+
+        //PLAYERSIZE = startPlayerSize;
+        transform.localScale = startPlayerSize;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle")) {
+            if (PLAYERHP > 0) {
+                PLAYERHP -= DamageManager.instance.damage;                      //damage
+                transform.localScale *= (1 + DamageManager.instance.damage);     //size change
+                print(transform.localScale);
+                print(PLAYERHP);
+            }
+            if (PLAYERHP <= 0) {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
