@@ -412,10 +412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DamageManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4502142109431482160, guid: 39136b0376449c340a7b6c034149a674, type: 3}
-      propertyPath: sizeRatio
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 7617463834081963384, guid: 39136b0376449c340a7b6c034149a674, type: 3}
       propertyPath: m_RootOrder
       value: 3
