@@ -14,5 +14,7 @@ public class DamageManager : MonoBehaviour
 
     public float speed;
     public float damage = 0.1f;
+    public float firedamage = 0.2f;
+    
 
 }

@@ -57,9 +57,8 @@ public class PlayerStats : MonoBehaviour
     {
         PLAYERHP = maxHP;
         PLAYERSPEED = startPlayerSpeed;
-
-        //PLAYERSIZE = startPlayerSize;
         transform.localScale = startPlayerSize;
+        //PLAYERSIZE = startPlayerSize;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -67,11 +66,27 @@ public class PlayerStats : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle")) {
             if (PLAYERHP > 0) {
                 PLAYERHP -= DamageManager.instance.damage;                      //damage
-                transform.localScale *= (1 + DamageManager.instance.damage);     //size change
+                transform.localScale += (DamageManager.instance.damage) * Vector3.one;     //size change
                 print(transform.localScale);
                 print(PLAYERHP);
             }
             if (PLAYERHP <= 0) {
+                Destroy(this.gameObject);
+            }
+        }
+
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            if (PLAYERHP > 0)
+            {
+                PLAYERHP -= DamageManager.instance.firedamage;
+                transform.localScale += (DamageManager.instance.firedamage) * Vector3.one;     //size change
+                print(PLAYERHP);
+                print(transform.localScale);
+
+            }
+            if (PLAYERHP <= 0)
+            {
                 Destroy(this.gameObject);
             }
         }
