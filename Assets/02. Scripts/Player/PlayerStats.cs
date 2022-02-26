@@ -60,11 +60,11 @@ public class PlayerStats : MonoBehaviour
     }
     #endregion Player Size Property
 
-    void Start()
+    void Start() //Initialize
     {
-        PLAYERHP = maxHP;
-        sliderHP.value = maxHP;
-        fill.color = gradient.Evaluate(1f);
+        PLAYERHP = maxHP;                       //set PlayerHP to max
+        sliderHP.value = maxHP;                 //set slider to max
+        fill.color = gradient.Evaluate(1f);     //set slider color
 
         PLAYERSPEED = startPlayerSpeed;
         transform.localScale = startPlayerSize;
@@ -77,26 +77,16 @@ public class PlayerStats : MonoBehaviour
             if (PLAYERHP > 0) {
                 PLAYERHP -= DamageManager.instance.damage;                      //damage
                 transform.localScale += (DamageManager.instance.damage) * Vector3.one;     //size change
-                print(transform.localScale);
-                print(PLAYERHP);
             }
-            if (PLAYERHP <= 0) {
-                Destroy(this.gameObject);
-            }
+            if (PLAYERHP <= 0) { Destroy(this.gameObject); }
         }
 
-        if (other.gameObject.CompareTag("Fire"))
-        {
+        if (other.gameObject.CompareTag("Fire")){
             if (PLAYERHP > 0){
                 PLAYERHP -= DamageManager.instance.firedamage;
                 transform.localScale += (DamageManager.instance.firedamage) * Vector3.one;     //size change
-                print(PLAYERHP);
-                print(transform.localScale);
-
             }
-            if (PLAYERHP <= 0){
-                Destroy(this.gameObject);
-            }
+            if (PLAYERHP <= 0){ Destroy(this.gameObject); }
         }
     }
 }
