@@ -52,4 +52,22 @@ public class PlayerMove : MonoBehaviour
         #endregion Camera
 
     }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Obstacle")) {
+
+            print(rb.velocity);
+            float _speed = rb.velocity.magnitude;
+
+            Vector2 _objectNormal = other.contacts[0].normal.normalized;
+
+            moveDir = Vector2.Reflect(rb.velocity, _objectNormal);
+
+            rb.velocity = moveDir * _speed;
+
+            print(rb.velocity);
+
+
+        }
+    }
 }
