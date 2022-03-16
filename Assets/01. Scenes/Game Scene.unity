@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: fill
       value: 
       objectReference: {fileID: 1498769319}
+    - target: {fileID: 847687755829589639, guid: 3bffffef196f64cb6940ae70aaec3441, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.400024
+      objectReference: {fileID: 0}
+    - target: {fileID: 847687755829589639, guid: 3bffffef196f64cb6940ae70aaec3441, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15.299999
+      objectReference: {fileID: 0}
     - target: {fileID: 847687755978261315, guid: 3bffffef196f64cb6940ae70aaec3441, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -239,6 +247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2439322658309292854, guid: 3a611b07035ff9e4eb62441acf8320c1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2439322658309292859, guid: 3a611b07035ff9e4eb62441acf8320c1, type: 3}
       propertyPath: changeSize
       value: 2
@@ -492,7 +504,6 @@ GameObject:
   m_Component:
   - component: {fileID: 607175405}
   - component: {fileID: 607175407}
-  - component: {fileID: 607175406}
   m_Layer: 0
   m_Name: MinimapCamera
   m_TagString: MainCamera
@@ -515,14 +526,6 @@ Transform:
   m_Father: {fileID: 542974579}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &607175406
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607175404}
-  m_Enabled: 1
 --- !u!20 &607175407
 Camera:
   m_ObjectHideFlags: 0
@@ -923,6 +926,7 @@ MonoBehaviour:
   rb: {fileID: 1318026150858395085}
   cam: {fileID: 542974578}
   startSpeed: 5
+  inputDisableTime: 1.5
 --- !u!4 &1318026150858395080
 Transform:
   m_ObjectHideFlags: 0
@@ -955,6 +959,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1720246407120770589, guid: 8a3ef4bfd2af0da48a928c265ee767a0, type: 3}
   bulletForce: 20
   firePosition: {fileID: 6467313668539121301}
+  fireRate: 0.5
 --- !u!50 &1318026150858395085
 Rigidbody2D:
   serializedVersion: 4
@@ -985,7 +990,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1318026150858395073}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0196e659bdea9d64fbcb88c494ac9573, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
