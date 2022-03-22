@@ -16,6 +16,10 @@ public class PlayerMove : MonoBehaviour
 
     //Rotate
     Vector2 mousePos;
+
+    //Collision
+    bool isBumped;
+    public float inputDisableTime = 1.5f;
     #endregion Declaration
 
 
@@ -29,8 +33,17 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //position
-        rb.MovePosition(rb.position + moveDir * playerStats.PLAYERSPEED * Time.fixedDeltaTime);
+        if (isBumped == false)
+        {
+            StopCoroutine(IEDisableUserInput());
+            //position
+            //rb.MovePosition(rb.position + moveDir * playerStats.PLAYERSPEED * Time.fixedDeltaTime);
+            rb.velocity = moveDir * playerStats.PLAYERSPEED;
+        }
+        else {
+            Debug.LogWarning("Disable UserInput");
+            StartCoroutine(IEDisableUserInput());
+        }
 
         //rotation
         Vector2 lookDir = mousePos - rb.position;
@@ -51,23 +64,40 @@ public class PlayerMove : MonoBehaviour
 
         #endregion Camera
 
+        lastVelocity = rb.velocity;
+
     }
+
+    Vector2 lastVelocity;
+
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Obstacle")) {
 
+            isBumped = true;
+
             print(rb.velocity);
             float _speed = rb.velocity.magnitude;
-
             Vector2 _objectNormal = other.contacts[0].normal.normalized;
-
             moveDir = Vector2.Reflect(rb.velocity, _objectNormal);
 
             rb.velocity = moveDir * _speed;
 
             print(rb.velocity);
 
+            /*            float _speed = lastVelocity.magnitude;
+                        var direction = Vector2.Reflect(lastVelocity.normalized, other.contacts[0].normal);
+                        rb.velocity = direction * Mathf.Max(_speed, 3f);
+            */
 
         }
+    }
+
+
+
+    IEnumerator IEDisableUserInput() {
+        Debug.LogWarning("Staret IEDisableUserInput Coroutine");
+        yield return new WaitForSeconds(inputDisableTime);
+        isBumped = false;
     }
 }
