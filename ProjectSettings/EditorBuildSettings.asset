@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: f08f2d3d01fa637478d92251e022fd19
   - enabled: 1
     path: Assets/01. Scenes/Player/Network Game Scene.unity
-    guid: f589ddec7c8461742b0eab493c523adb
+    guid: 406b5cfa51843f04fb0e8249b5beeb6d
   - enabled: 1
     path: Assets/01. Scenes/Player/Sandbox Player.unity
     guid: 2cda990e2423bbf4892e6590ba056729
