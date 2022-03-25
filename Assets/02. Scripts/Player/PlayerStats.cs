@@ -31,8 +31,10 @@ public class PlayerStats : MonoBehaviour
         set
         {
             playerHP = value;
+            slider.value = playerHP;
+            fill.color = gradient.Evaluate(slider.normalizedValue);
 
-            SetHealth(playerHP);
+            //SetHealth(playerHP);
         }
     }
     #endregion Player HP Property
@@ -62,8 +64,14 @@ public class PlayerStats : MonoBehaviour
 
     void Start() //Initialize
     {
+        #region MaxHP
         PLAYERHP = maxHP;                       //set PlayerHP to max
-        SetMaxHealth(maxHP);
+        slider.maxValue = PLAYERHP;
+        slider.value = PLAYERHP;
+        fill.color = gradient.Evaluate(1f);
+        #endregion MaxHP
+
+        //SetMaxHealth(maxHP);
         PLAYERSPEED = startPlayerSpeed;
         transform.localScale = startPlayerSize;
         //PLAYERSIZE = startPlayerSize;
@@ -88,7 +96,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void SetMaxHealth(float health)
+/*    public void SetMaxHealth(float health)
     {
         slider.maxValue = health;
         slider.value = health;
@@ -101,5 +109,5 @@ public class PlayerStats : MonoBehaviour
         slider.value = health;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
-    }
+    }*/
 }

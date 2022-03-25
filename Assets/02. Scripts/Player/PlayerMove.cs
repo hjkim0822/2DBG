@@ -54,14 +54,13 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Camera
         //move input
         moveDir.x = Input.GetAxisRaw("Horizontal");
         moveDir.y = Input.GetAxisRaw("Vertical");
 
+        #region Camera
         //look input
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
         #endregion Camera
 
         lastVelocity = rb.velocity;
