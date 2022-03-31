@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObstacleBouncetest : MonoBehaviour
 {
-    public int bounceForce = 5;
+    public float bounceForce = 5;
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             print("Collision");
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
             Vector2 _playerMoveDirection = rb.velocity;
-            rb.AddForce(-_playerMoveDirection * bounceForce, ForceMode2D.Impulse);
+            rb.AddForce(-_playerMoveDirection * bounceForce, ForceMode2D.Force);
         }
     }
 }
